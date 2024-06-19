@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Sistemas de Ecuaciones</title>
+</head>
+<body>
+    <h2>Práctica de Sistemas de Ecuaciones</h2>
+    <p>Resuelve el siguiente sistema de ecuaciones:</p>
+    <p>Ecuación 1: Ax + By = C</p>
+    <p>Ecuación 2: Dx + Ey = F</p>
+    <label for="coefA">Coeficiente A:</label>
+    <input type="number" id="coefA">
+    <label for="coefB">Coeficiente B:</label>
+    <input type="number" id="coefB">
+    <label for="constC">Constante C:</label>
+    <input type="number" id="constC">
+    <br><br>
+    <label for="coefD">Coeficiente D:</label>
+    <input type="number" id="coefD">
+    <label for="coefE">Coeficiente E:</label>
+    <input type="number" id="coefE">
+    <label for="constF">Constante F:</label>
+    <input type="number" id="constF">
+    <br><br>
+    <button onclick="checkSolution()">Verificar</button>
+    <div id="result"></div>
+
+    <script>
+        function checkSolution() {
+            const coefA = parseFloat(document.getElementById('coefA').value);
+            const coefB = parseFloat(document.getElementById('coefB').value);
+            const constC = parseFloat(document.getElementById('constC').value);
+            const coefD = parseFloat(document.getElementById('coefD').value);
+            const coefE = parseFloat(document.getElementById('coefE').value);
+            const constF = parseFloat(document.getElementById('constF').value);
+
+            const determinant = coefA * coefE - coefB * coefD;
+            const detX = constC * coefE - constF * coefB;
+            const detY = coefA * constF - coefD * constC;
+
+            let solutionText = '';
+
+            if (determinant !== 0) {
+                const x = detX / determinant;
+                const y = detY / determinant;
+                solutionText = `La solución es: x = ${x}, y = ${y}`;
+            } else {
+                solutionText = 'El sistema no tiene solución única.';
+            }
+
+            document.getElementById('result').innerText = solutionText;
+        }
+    </script>
+</body>
+</html>
